@@ -54,6 +54,7 @@ const MERMAID_CONFIG_DIAGRAM_KEYS = [
   'gitGraph',
   'c4',
   'sankey',
+  'railroad',
 ];
 
 /**
@@ -195,6 +196,7 @@ async function generateTypescript(mermaidConfigSchema: JSONSchemaType<MermaidCon
   assert.ok(mermaidConfigSchema.$defs);
   const modifiedSchema = {
     ...unrefSubschemas(removeRequired(mermaidConfigSchema)),
+    //...removeRequired(mermaidConfigSchema),
 
     $defs: Object.fromEntries(
       Object.entries(mermaidConfigSchema.$defs).map(([key, subSchema]) => {

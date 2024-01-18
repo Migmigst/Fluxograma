@@ -22,6 +22,7 @@ import mindmap from '../diagrams/mindmap/detector.js';
 import sankey from '../diagrams/sankey/sankeyDetector.js';
 import { registerLazyLoadedDiagrams } from './detectType.js';
 import { registerDiagram } from './diagramAPI.js';
+import { railroad } from '../diagrams/railroad/railroadDetector.js';
 
 let hasLoadedDiagrams = false;
 export const addDiagrams = () => {
@@ -87,6 +88,7 @@ export const addDiagrams = () => {
     journey,
     quadrantChart,
     sankey,
+    railroad,
     xychart
   );
 };
