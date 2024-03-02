@@ -19,6 +19,7 @@ import errorDiagram from '../diagrams/error/errorDiagram.js';
 import flowchartElk from '../diagrams/flowchart/elk/detector.js';
 import timeline from '../diagrams/timeline/detector.js';
 import mindmap from '../diagrams/mindmap/detector.js';
+import contextMap from '../diagrams/context-map/detector.js';
 import sankey from '../diagrams/sankey/sankeyDetector.js';
 import block from '../diagrams/block/blockDetector.js';
 import { registerLazyLoadedDiagrams } from './detectType.js';
@@ -81,6 +82,7 @@ export const addDiagrams = () => {
     flowchartV2,
     flowchart,
     mindmap,
+    contextMap,
     timeline,
     git,
     stateV2,

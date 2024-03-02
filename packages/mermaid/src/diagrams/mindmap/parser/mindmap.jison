@@ -10,6 +10,7 @@
 %{
 	// Pre-lexer code can go here
 %}
+
 %x NODE
 %x NSTR
 %x NSTR2
