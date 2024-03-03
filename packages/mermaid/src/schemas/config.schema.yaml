@@ -890,11 +890,11 @@ $defs: # JSON Schema definition (maybe we should move these to a separate file)
     properties:
       width:
         type: number
-        default: 600 
+        default: 600
       height:
         type: number
-        default: 600 
-      nodeMargin:  
+        default: 600
+      nodeMargin:
         title: Context Map Node Margin
         description: margins of nodes
         type: object
@@ -902,12 +902,12 @@ $defs: # JSON Schema definition (maybe we should move these to a separate file)
         properties:
           horizontal:
             type: number
-          vertical:  
+          vertical:
             type: number
-        default: 
+        default:
           horizontal: 20
           vertical: 30
-      nodePadding:  
+      nodePadding:
         title: Context Map Node Padding
         description: padding of nodes
         type: object
@@ -915,7 +915,7 @@ $defs: # JSON Schema definition (maybe we should move these to a separate file)
         properties:
           horizontal:
             type: number
-          vertical:  
+          vertical:
             type: number
         default:
           horizontal: 100
@@ -928,15 +928,15 @@ $defs: # JSON Schema definition (maybe we should move these to a separate file)
         properties:
           fontFamily:
             type: string
-          fontSize: 
+          fontSize:
             type: number
-          fontWeight: 
+          fontWeight:
             type: number
         default:
-          fontFamily: "Arial"
-          fontSize: 12  
-          fontWeight: 400 
- 
+          fontFamily: 'Arial'
+          fontSize: 12
+          fontWeight: 400
+
   PieDiagramConfig:
     title: Pie Diagram Config
     allOf: [{ $ref: '#/$defs/BaseDiagramConfig' }]
