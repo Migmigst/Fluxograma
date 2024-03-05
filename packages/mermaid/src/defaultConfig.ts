@@ -257,6 +257,10 @@ const config: RequiredDeep<MermaidConfig> = {
     // TODO: can we make this default to `true` instead?
     useMaxWidth: false,
   },
+  contextMap: {
+    ...defaultConfigJson.contextMap,
+    useMaxWidth: false,
+  },
 };
 
 const keyify = (obj: any, prefix = ''): string[] =>
