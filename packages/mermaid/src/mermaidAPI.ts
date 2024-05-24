@@ -31,6 +31,8 @@ import { setA11yDiagramInfo, addSVGa11yTitleDescription } from './accessibility.
 import type { DiagramMetadata, DiagramStyleClassDef } from './diagram-api/types.js';
 import { preprocessDiagram } from './preprocess.js';
 import { decodeEntities } from './utils.js';
+import { registerIcons } from './rendering-util/svgRegister.js';
+import defaultIconLibrary from './rendering-util/svg/index.js';
 
 const MAX_TEXTLENGTH = 50_000;
 const MAX_TEXTLENGTH_EXCEEDED_MSG =
@@ -527,6 +529,20 @@ function initialize(options: MermaidConfig = {}) {
 
   // Set default options
   configApi.saveConfigFromInitialize(options);
+
+  registerIcons(defaultIconLibrary);
+  if (options?.iconLibraries) {
+    options.iconLibraries.forEach(async (library) => {
+      if (typeof (library) === 'string') {
+        if (library === 'aws:full') {
+          const { default: awsFull } = await import('./rendering-util/svg/aws/awsFull.js');
+          registerIcons(awsFull);
+        }
+      } else {
+        registerIcons(library);
+      }
+    });
+  }
 
   if (options?.theme && options.theme in theme) {
     // Todo merge with user options
