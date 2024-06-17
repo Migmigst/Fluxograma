@@ -231,6 +231,32 @@ context('Sequence diagram', () => {
       `
     );
   });
+  it('should render a sequence diagram with activations even if there are no deactivations', () => {
+    renderGraph(
+        `
+    sequenceDiagram
+      participant a
+      participant b
+      participant c
+      participant d
+      activate d
+      a->>b:halloB
+      activate b
+      b->>+c:halloC
+      c->>+b:back
+      create participant e
+      a-->>e:createE
+      activate e
+      a-->>e:halloE
+      destroy e
+      e->>a:destroyE
+      a-->>d : halloD
+    `,
+        { sequence: { useMaxWidth: false } }
+      );
+    cy.get('rect.activation0').should('have.length', 4);
+    cy.get('rect.activation1').should('have.length', 1);
+    });
   context('font settings', () => {
     it('should render different note fonts when configured', () => {
       imgSnapshotTest(
@@ -517,7 +543,7 @@ context('Sequence diagram', () => {
           participant E
           participant G
 
-          A ->>+ B: Task 1
+          A ->> B: Task 1
           rect rgb(178, 102, 255)
             B ->>+ C: Task 2
             C -->>- B: Return
@@ -525,7 +551,7 @@ context('Sequence diagram', () => {
 
           A ->> D: Task 3
           rect rgb(0, 128, 255)
-            D ->>+ E: Task 4
+            D ->> E: Task 4
             rect rgb(0, 204, 0)
             E ->>+ G: Task 5
             G -->>- E: Return
@@ -548,7 +574,7 @@ context('Sequence diagram', () => {
           participant E
           participant G
 
-          A ->>+ B: Task 1
+          A ->> B: Task 1
           opt this is an opt with a long title that will overflow
             B ->>+ C: Task 2
             C -->>- B: Return
@@ -556,7 +582,7 @@ context('Sequence diagram', () => {
 
           A ->> D: Task 3
           opt this is another opt with a long title that will overflow
-            D ->>+ E: Task 4
+            D ->> E: Task 4
             opt this is a nested opt with a long title that will overflow
             E ->>+ G: Task 5
             G -->>- E: Return
@@ -580,7 +606,7 @@ context('Sequence diagram', () => {
           participant E
           participant G
 
-          A ->>+ B: Task 1
+          A ->> B: Task 1
           opt this is an opt with a long title that will overflow
             B ->>+ C: Task 2
             C -->>- B: Return
@@ -588,7 +614,7 @@ context('Sequence diagram', () => {
 
           A ->> D: Task 3
           opt this is another opt with a long title that will overflow
-            D ->>+ E: Task 4
+            D ->> E: Task 4
             opt this is a nested opt with a long title that will overflow
             E ->>+ G: Task 5
             G -->>- E: Return
